@@ -15,7 +15,20 @@ app.get("/events", (req, res) => {
 });
 
 app.post("/events", (req, res) => {
-  res.send("Crear un evento");
+  const newEvent = {
+    id: events.length + 1,
+    name: req.body.name,
+    description: req.body.description,
+    start_at: req.body.start_at,
+    ends_at: req.body.ends_at,
+    address: req.body.address,
+    booking_open: req.body.booking_open,
+    image: req.body.image,
+  };
+
+  events.push(newEvent);
+
+  res.status(201).json(newEvent);
 });
 
 app.put("/events", (req, res) => {
