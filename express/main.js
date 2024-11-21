@@ -32,6 +32,17 @@ app.get("/events", (req, res) => {
   res.json(filteredEvents);
 });
 
+app.get("/events/:id", (req, res) => {
+  const { id } = req.params;
+  const event = events.find((event) => event.id === parseInt(id));
+
+  if (!event) {
+    return res.status(404).json({ message: "Evento no encontrado" });
+  }
+
+  res.json(event);
+});
+
 app.post("/events", (req, res) => {
   const newEvent = {
     id: events.length + 1,
