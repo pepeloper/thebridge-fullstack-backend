@@ -1,14 +1,17 @@
 import express from "express";
+import events from "./data.js";
 
 const app = express();
 const PORT = 3000;
+
+app.use(express.json());
 
 app.get("/", (req, res) => {
   res.send("Bienvenido a mi API");
 });
 
 app.get("/events", (req, res) => {
-  res.send("Listado de eventos");
+  res.json(events);
 });
 
 app.post("/events", (req, res) => {
