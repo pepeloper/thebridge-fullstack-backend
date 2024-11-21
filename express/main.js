@@ -11,7 +11,16 @@ app.get("/", (req, res) => {
 });
 
 app.get("/events", (req, res) => {
-  res.json(events);
+  const { booking } = req.query;
+
+  let filteredEvents = events;
+
+  if (booking !== undefined) {
+    const isBookingOpen = booking.toLowerCase() === "open";
+    filteredEvents = events.filter((event) => event.booking_open === isBookingOpen);
+  }
+
+  res.json(filteredEvents);
 });
 
 app.post("/events", (req, res) => {
