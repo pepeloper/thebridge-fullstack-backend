@@ -11,13 +11,22 @@ app.get("/", (req, res) => {
 });
 
 app.get("/events", (req, res) => {
-  const { booking } = req.query;
+  const { booking, start_at } = req.query;
 
   let filteredEvents = events;
 
   if (booking !== undefined) {
     const isBookingOpen = booking.toLowerCase() === "open";
-    filteredEvents = events.filter((event) => event.booking_open === isBookingOpen);
+    filteredEvents = filteredEvents.filter((event) => event.booking_open === isBookingOpen);
+  }
+
+  if (start_at) {
+    const startAtFilter = new Date(start_at);
+    if (!isNaN(startAtFilter.getTime())) {
+      filteredEvents = filteredEvents.filter((event) => new Date(event.start_at) > startAtFilter);
+    } else {
+      return res.status(400).json({ message: "Invalid date format for startAfter" });
+    }
   }
 
   res.json(filteredEvents);
