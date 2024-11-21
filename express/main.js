@@ -48,8 +48,18 @@ app.put("/events/:id", (req, res) => {
   res.json(events[eventIndex]);
 });
 
-app.delete("/events", (req, res) => {
-  res.send("Eliminar un evento");
+app.delete("/events/:id", (req, res) => {
+  const { id } = req.params;
+
+  const eventIndex = events.findIndex((event) => event.id === parseInt(id));
+
+  if (eventIndex === -1) {
+    return res.status(404).json({ message: "Evento no encontrado" });
+  }
+
+  events.splice(eventIndex, 1);
+
+  res.status(204).send();
 });
 
 app.listen(PORT, () => {
