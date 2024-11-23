@@ -1,85 +1,65 @@
-import events from "../data.js"
+import EventsService from "./events.service.js"
 
 const EventsController = {
   index: (req, res) => {
-    const { booking, start_at } = req.query
-
-    let filteredEvents = events
-
-    if (booking !== undefined) {
-      const isBookingOpen = booking.toLowerCase() === "open"
-      filteredEvents = filteredEvents.filter((event) => event.booking_open === isBookingOpen)
-    }
-
-    if (start_at) {
-      const startAtFilter = new Date(start_at)
-      if (!isNaN(startAtFilter.getTime())) {
-        filteredEvents = filteredEvents.filter((event) => new Date(event.start_at) > startAtFilter)
-      } else {
-        return res.status(400).json({ message: "Invalid date format for startAfter" })
+    try {
+      const { booking, start_at } = req.query
+      const events = EventsService.getAll({ booking, start_at })
+      res.json(events)
+    } catch (error) {
+      if (error.message === "Invalid date format for startAfter") {
+        return res.status(400).json({ message: error.message })
       }
+      res.status(500).json({ message: "Internal server error" })
     }
-
-    res.json(filteredEvents)
   },
 
   show: (req, res) => {
-    const { id } = req.params
-    const event = events.find((event) => event.id === parseInt(id))
-
-    if (!event) {
-      return res.status(404).json({ message: "Evento no encontrado" })
+    try {
+      const { id } = req.params
+      const event = EventsService.getById(id)
+      res.json(event)
+    } catch (error) {
+      if (error.message === "Event not found") {
+        return res.status(404).json({ message: "Evento no encontrado" })
+      }
+      res.status(500).json({ message: "Internal server error" })
     }
-
-    res.json(event)
   },
 
   create: (req, res) => {
-    const newEvent = {
-      id: events.length + 1,
-      name: req.body.name,
-      description: req.body.description,
-      start_at: req.body.start_at,
-      ends_at: req.body.ends_at,
-      address: req.body.address,
-      booking_open: req.body.booking_open,
-      image: req.body.image,
+    try {
+      const newEvent = EventsService.create(req.body)
+      res.status(201).json(newEvent)
+    } catch (error) {
+      res.status(500).json({ message: "Internal server error" })
     }
-
-    events.push(newEvent)
-
-    res.status(201).json(newEvent)
   },
 
   update: (req, res) => {
-    const { id } = req.params
-
-    const eventIndex = events.findIndex((event) => event.id === parseInt(id))
-
-    if (eventIndex === -1) {
-      return res.status(404).json({ message: "Evento no encontrado" })
+    try {
+      const { id } = req.params
+      const updatedEvent = EventsService.update(id, req.body)
+      res.json(updatedEvent)
+    } catch (error) {
+      if (error.message === "Event not found") {
+        return res.status(404).json({ message: "Evento no encontrado" })
+      }
+      res.status(500).json({ message: "Internal server error" })
     }
-
-    events[eventIndex] = {
-      ...events[eventIndex],
-      ...req.body,
-    }
-
-    res.json(events[eventIndex])
   },
 
   delete: (req, res) => {
-    const { id } = req.params
-
-    const eventIndex = events.findIndex((event) => event.id === parseInt(id))
-
-    if (eventIndex === -1) {
-      return res.status(404).json({ message: "Evento no encontrado" })
+    try {
+      const { id } = req.params
+      EventsService.delete(id)
+      res.status(204).send()
+    } catch (error) {
+      if (error.message === "Event not found") {
+        return res.status(404).json({ message: "Evento no encontrado" })
+      }
+      res.status(500).json({ message: "Internal server error" })
     }
-
-    events.splice(eventIndex, 1)
-
-    res.status(204).send()
   }
 }
 
