@@ -1,28 +1,19 @@
-import events from "../data.js"
+import EventsRepository from "./events.repository.js"
 
 const EventsService = {
   getAll: (filters = {}) => {
-    let filteredEvents = events
-
-    if (filters.booking !== undefined) {
-      const isBookingOpen = filters.booking.toLowerCase() === "open"
-      filteredEvents = filteredEvents.filter((event) => event.booking_open === isBookingOpen)
-    }
-
-    if (filters.start_at) {
-      const startAtFilter = new Date(filters.start_at)
-      if (!isNaN(startAtFilter.getTime())) {
-        filteredEvents = filteredEvents.filter((event) => new Date(event.start_at) > startAtFilter)
-      } else {
-        throw new Error("Invalid date format for startAfter")
+    try {
+      return EventsRepository.findAll(filters)
+    } catch (error) {
+      if (error.message === "Invalid date format for startAfter") {
+        throw error
       }
+      throw new Error("Error fetching events")
     }
-
-    return filteredEvents
   },
 
   getById: (id) => {
-    const event = events.find((event) => event.id === parseInt(id))
+    const event = EventsRepository.findById(id)
     if (!event) {
       throw new Error("Event not found")
     }
@@ -30,38 +21,22 @@ const EventsService = {
   },
 
   create: (eventData) => {
-    const newEvent = {
-      id: events.length + 1,
-      ...eventData
-    }
-
-    events.push(newEvent)
-    return newEvent
+    return EventsRepository.create(eventData)
   },
 
   update: (id, eventData) => {
-    const eventIndex = events.findIndex((event) => event.id === parseInt(id))
-
-    if (eventIndex === -1) {
+    const updatedEvent = EventsRepository.update(id, eventData)
+    if (!updatedEvent) {
       throw new Error("Event not found")
     }
-
-    events[eventIndex] = {
-      ...events[eventIndex],
-      ...eventData,
-    }
-
-    return events[eventIndex]
+    return updatedEvent
   },
 
   delete: (id) => {
-    const eventIndex = events.findIndex((event) => event.id === parseInt(id))
-
-    if (eventIndex === -1) {
+    const result = EventsRepository.delete(id)
+    if (!result) {
       throw new Error("Event not found")
     }
-
-    events.splice(eventIndex, 1)
   }
 }
 
