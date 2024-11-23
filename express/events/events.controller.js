@@ -1,16 +1,13 @@
 import EventsService from "./events.service.js"
 
 const EventsController = {
-  index: (req, res) => {
+  index: async (req, res, next) => {
     try {
       const { booking, start_at } = req.query
       const events = EventsService.getAll({ booking, start_at })
       res.json(events)
     } catch (error) {
-      if (error.message === "Invalid date format for startAfter") {
-        return res.status(400).json({ message: error.message })
-      }
-      res.status(500).json({ message: "Internal server error" })
+      next(error)
     }
   },
 
