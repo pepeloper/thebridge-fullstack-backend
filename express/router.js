@@ -1,12 +1,10 @@
 import express from "express"
 import eventsRouter from "./events/events.router.js"
+import LandingController from "./landing/landing.controller.js"
 
 const router = express.Router()
 
-router.get("/", (req, res) => {
-  res.send("Bienvenido a mi API")
-})
-
+router.get("/", LandingController.welcome)
 router.use("/events", eventsRouter)
 
 export default router
