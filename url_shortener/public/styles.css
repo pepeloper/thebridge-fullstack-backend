@@ -1,6 +1,7 @@
 :root {
   /* Colors */
   --color-gray-900: #181D1F;
+  --color-gray-800: #1F2426;
   --color-gray-100: #F1F1F1;
   --color-gray-400: #B8B8B8;
   --color-primary: #14B9DD;
@@ -40,7 +41,7 @@ body {
 
 /* Header section */
 .header {
-  background-color: var(--color-gray-900);
+  background: linear-gradient(135deg, var(--color-gray-800) 0%, var(--color-gray-900) 70%);
   padding-bottom: 113px;
 }
 
