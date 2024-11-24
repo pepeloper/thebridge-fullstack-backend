@@ -2,11 +2,22 @@
 
 🗂️ [Google Drive](https://drive.google.com/drive/folders/1xrZoi9MbpsL8G0MltPox4FMq_6ViyFFa?usp=drive_link)
 
+
 ## Node.js
+> Node.js es un entorno de ejecución de JavaScript opensource. Cubrimos los fundamentos de Node.js, incluyendo módulos y características principales para el desarrollo del lado del servidor. También vemos como funciona `npm`, scripts e instalación de paquetes.
+
 
 🔗 [Apuntes](https://docs.google.com/presentation/d/1pdSwfJmhVPX9zqTBPom_kL_VyHi7PD-F/edit?usp=drive_link&ouid=100284452569538667608&rtpof=true&sd=true)
 
 
 ## Express
+> Express es un framework de aplicaciones web minimalista y flexible para Node.js. Esta sección proporciona apuntes sobre Express, cubriendo temas como enrutamiento, middleware, la construcción de APIs RESTful y el testeo con Postman.
 
 🔗 [Apuntes](https://docs.google.com/presentation/d/1qnEyHCcyvzQguBf2MkjwrXIkwjnld6Gp/edit?usp=drive_link&ouid=100284452569538667608&rtpof=true&sd=true)
+
+🔗 [Ejercicio](https://docs.google.com/document/d/1b1PlexXbShVF2rPJZ5Yx7y5JMQLuVk2kolCt-8fjl0s/edit?usp=sharing)
+
+## Layers
+> Discutimos el concepto de arquitectura en capas en el desarrollo backend. Estos apuntes cubren temas como la separación de responsabilidades y las mejores prácticas para estructurar una aplicación backend.
+
+🔗 [Apuntes](https://docs.google.com/presentation/d/1SLghC8mjqmqWGByulgqOp2JAJLtYpfCD/edit?usp=sharing&ouid=100284452569538667608&rtpof=true&sd=true)
