@@ -6,4 +6,11 @@ export const links = [
     visits: 0,
     createdAt: new Date("2024-11-23"),
   },
+  {
+    id: "EJhlUf_xminUtKb5MmqlQ",
+    originalUrl: "https://www.github.com/pepeloper",
+    shortUrl: "http://localhost:3000/EJhlUf_xminUtKb5MmqlQ",
+    visits: 1,
+    createdAt: new Date("2024-11-23"),
+  },
 ];
