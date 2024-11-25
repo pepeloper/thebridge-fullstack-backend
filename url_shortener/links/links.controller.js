@@ -4,7 +4,7 @@ export const linkController = {
   create: (req, res) => {
     try {
       const { url } = req.body;
-      const link = linkService.create(url);
+      linkService.create(url);
 
       res.redirect('/');
     } catch (error) {

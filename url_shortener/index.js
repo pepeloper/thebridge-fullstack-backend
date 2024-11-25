@@ -7,10 +7,9 @@ import { validateLinkId } from "./middleware/links.middleware.js";
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors());
+app.use(cors()); // Enable Cross-Origin Resource Sharing (CORS) for all routes
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static("public"));
+app.use(express.static("public")); // Serve static files from the 'public' directory
 
 app.use("/api/links", linksRouter);
 app.get("/:id", validateLinkId, linkController.redirectToUrl);
