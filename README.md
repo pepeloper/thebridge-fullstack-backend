@@ -9,6 +9,9 @@
 
 🔗 [Apuntes](https://docs.google.com/presentation/d/1pdSwfJmhVPX9zqTBPom_kL_VyHi7PD-F/edit?usp=drive_link&ouid=100284452569538667608&rtpof=true&sd=true)
 
+### Inicializar npm
+> Para inicializar npm en nuestro proyecto nuevo, tendremos que ir a terminal (apuntando al proyecto), y ejecutar el siguiente comando: "npm init".
+
 
 ## Express
 > Express es un framework de aplicaciones web minimalista y flexible para Node.js. Esta sección proporciona apuntes sobre Express, cubriendo temas como enrutamiento, middleware, la construcción de APIs RESTful y el testeo con Postman.
