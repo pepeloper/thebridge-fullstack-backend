@@ -24,3 +24,11 @@
 > Discutimos el concepto de arquitectura en capas en el desarrollo backend. Estos apuntes cubren temas como la separación de responsabilidades y las mejores prácticas para estructurar una aplicación backend.
 
 🔗 [Apuntes](https://docs.google.com/presentation/d/1SLghC8mjqmqWGByulgqOp2JAJLtYpfCD/edit?usp=sharing&ouid=100284452569538667608&rtpof=true&sd=true)
+
+## Bases de datos relacionales
+> Primer acercamiento a las entidades y relaciones entre ellas:
+> - Uno a uno
+> - Uno a muchos
+> - Muchos a muchos
+
+🔗 [Apuntes](https://docs.google.com/presentation/d/1pTOIZTHOE03-D3Q8TutwWRUvX87OG0yc/edit#slide=id.p1)
