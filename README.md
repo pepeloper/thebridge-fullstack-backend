@@ -27,8 +27,8 @@
 
 ## Bases de datos relacionales
 > Primer acercamiento a las entidades y relaciones entre ellas:
-### Uno a uno
-### Uno a muchos
-### Muchos a muchos
+> - Uno a uno
+> - Uno a muchos
+> - Muchos a muchos
 
 🔗 [Apuntes](https://docs.google.com/presentation/d/1pTOIZTHOE03-D3Q8TutwWRUvX87OG0yc/edit#slide=id.p1)
