@@ -1,0 +1,61 @@
+[
+  {
+    "id": "1",
+    "title": "asdasd",
+    "code": "npm run dev",
+    "language": "javascript",
+    "description": "asdasdasd",
+    "createdAt": "2024-11-26T17:56:19.232Z",
+    "updatedAt": "2024-11-26T17:56:19.232Z",
+    "author": "Miguel"
+  },
+  {
+    "id": "2",
+    "title": "Use json",
+    "code": "const app = express()\nconst port = process.env.PORT || 3000\n\napp.use(express.json())",
+    "language": "javascript",
+    "description": "",
+    "createdAt": "2024-11-26T18:02:48.265Z",
+    "updatedAt": "2024-11-26T18:02:48.265Z",
+    "author": "Larry"
+  },
+  {
+    "id": "3",
+    "title": "Express Server Setup",
+    "code": "const express = require('express')\nconst app = express()\nconst port = 3000\n\napp.listen(port, () => {\n  console.log(`Server running on port ${port}`)\n})",
+    "language": "javascript",
+    "description": "Basic Express.js server setup",
+    "createdAt": "2024-01-15T10:30:00.000Z",
+    "updatedAt": "2024-01-15T10:30:00.000Z",
+    "author": "Miguel"
+  },
+  {
+    "id": "4",
+    "title": "Fetch API Example",
+    "code": "async function getData(url) {\n  try {\n    const response = await fetch(url)\n    const data = await response.json()\n    return data\n  } catch (error) {\n    console.error('Error:', error)\n  }\n}",
+    "language": "javascript",
+    "description": "Simple fetch API wrapper with error handling",
+    "createdAt": "2024-01-15T10:35:00.000Z",
+    "updatedAt": "2024-01-15T10:35:00.000Z",
+    "author": "Larry"
+  },
+  {
+    "id": "5",
+    "title": "Miguel Snippet",
+    "code": "const miguel = \"hola\"",
+    "language": "javascript",
+    "description": "asdadasd",
+    "createdAt": "2024-11-27T19:41:00.706Z",
+    "updatedAt": "2024-11-27T19:41:00.706Z",
+    "author": "Miguel"
+  },
+  {
+    "id": "6",
+    "title": "If / Else",
+    "code": "              const responseData = await responsePost.json();\n              if (responseData.checkout && responseData.checkout.payment_intent === 'FREE_EVENT') {\n                  document.querySelector('#responseMessage').innerHTML = '¡Pedido creado exitosamente! Este evento es gratuito.';\n              } else if (responseData.checkout && responseData.checkout.url) {\n                  document.querySelector('#responseMessage').innerHTML = `Pedido creado. Completa el pago en: ${responseData.checkout.url}`;\n              } else {\n                  document.querySelector('#responseMessage').innerHTML = 'Pedido creado exitosamente: ' + JSON.stringify(responseData);\n              }",
+    "language": "express",
+    "description": "sadadasd",
+    "createdAt": "2024-12-02T09:19:43.865Z",
+    "updatedAt": "2024-12-02T09:19:43.865Z"
+  }
+]
