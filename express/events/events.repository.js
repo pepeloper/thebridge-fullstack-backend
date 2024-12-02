@@ -1,4 +1,4 @@
-import events from "../data.js"
+import events from "./events.database.js"
 
 const EventsRepository = {
   findAll: (filters = {}) => {
