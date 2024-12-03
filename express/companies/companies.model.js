@@ -33,6 +33,13 @@ companySchema.virtual('events', {
   foreignField: 'company_id'
 })
 
+companySchema.virtual('users', {
+  ref: 'User',
+  localField: '_id',
+  foreignField: 'company_id',
+  through: 'CompanyUser'
+})
+
 companySchema.pre('save', function(next) {
   if (this.isModified('name')) {
     this.slug = slugify(this.name, { lower: true })
