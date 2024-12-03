@@ -1,4 +1,5 @@
 import events from "./events.database.js"
+import eventModel from "./events.model.js"
 
 const EventsRepository = {
   findAll: (filters = {}) => {
@@ -25,12 +26,8 @@ const EventsRepository = {
     return events.find((event) => event.id === parseInt(id))
   },
 
-  create: (eventData) => {
-    const newEvent = {
-      id: events.length + 1,
-      ...eventData
-    }
-    events.push(newEvent)
+  create: async (eventData) => {
+    const newEvent = await eventModel.create(eventData);
     return newEvent
   },
 
