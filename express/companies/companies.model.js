@@ -22,7 +22,15 @@ const companySchema = new Schema({
   timestamps: {
     createdAt: 'created_at',
     updatedAt: 'updated_at'
-  }
+  },
+  toJSON: { virtuals: true },
+  toObject: { virtuals: true }
+})
+
+companySchema.virtual('events', {
+  ref: 'Event',
+  localField: '_id',
+  foreignField: 'company_id'
 })
 
 companySchema.pre('save', function(next) {

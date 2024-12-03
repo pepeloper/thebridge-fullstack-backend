@@ -26,7 +26,8 @@ const EventsRepository = {
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return null
     }
-    return eventModel.findById(id).lean()
+    return eventModel.findById(id)
+      .lean()
   },
 
   create: async (eventData) => {
