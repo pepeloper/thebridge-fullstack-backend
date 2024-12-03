@@ -1,53 +1,56 @@
-import events from "./events.database.js"
 import eventModel from "./events.model.js"
+import mongoose from "mongoose"
 
 const EventsRepository = {
-  findAll: (filters = {}) => {
-    let filteredEvents = events
+  findAll: async (filters = {}) => {
+    const query = {}
 
     if (filters.booking !== undefined) {
       const isBookingOpen = filters.booking.toLowerCase() === "open"
-      filteredEvents = filteredEvents.filter((event) => event.booking_open === isBookingOpen)
+      query.booking_open = isBookingOpen
     }
 
     if (filters.start_at) {
       const startAtFilter = new Date(filters.start_at)
       if (!isNaN(startAtFilter.getTime())) {
-        filteredEvents = filteredEvents.filter((event) => new Date(event.start_at) > startAtFilter)
+        query.start_at = { $gt: startAtFilter }
       } else {
         throw new Error("Invalid date format for startAfter")
       }
     }
 
-    return filteredEvents
+    return eventModel.find(query).lean()
   },
 
-  findById: (id) => {
-    return events.find((event) => event.id === parseInt(id))
+  findById: async (id) => {
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return null
+    }
+    return eventModel.findById(id).lean()
   },
 
   create: async (eventData) => {
-    const newEvent = await eventModel.create(eventData);
+    const newEvent = await eventModel.create(eventData)
     return newEvent
   },
 
-  update: (id, eventData) => {
-    const eventIndex = events.findIndex((event) => event.id === parseInt(id))
-    if (eventIndex === -1) return null
-
-    events[eventIndex] = {
-      ...events[eventIndex],
-      ...eventData,
+  update: async (id, eventData) => {
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return null
     }
-    return events[eventIndex]
+    return eventModel.findOneAndUpdate(
+      { _id: id },
+      { $set: eventData },
+      { new: true }
+    )
   },
 
-  delete: (id) => {
-    const eventIndex = events.findIndex((event) => event.id === parseInt(id))
-    if (eventIndex === -1) return false
-
-    events.splice(eventIndex, 1)
-    return true
+  delete: async (id) => {
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return false
+    }
+    const result = await eventModel.findOneAndDelete({ _id: id })
+    return result !== null
   }
 }
 
