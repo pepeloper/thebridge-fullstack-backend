@@ -1,10 +1,10 @@
-import express from "express"
+import { Router } from "express"
+import companiesRouter from "./companies/companies.router.js"
 import eventsRouter from "./events/events.router.js"
-import LandingController from "./landing/landing.controller.js"
 
-const router = express.Router()
+const router = Router()
 
-router.get("/", LandingController.welcome)
-router.use("/events", eventsRouter)
+router.use("/api/companies", companiesRouter)
+router.use("/api/events", eventsRouter)
 
 export default router
