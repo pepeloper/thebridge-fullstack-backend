@@ -1,5 +1,5 @@
-import express from "express";
-import router from "./router.js";
+import express from 'express';
+import router from './router.js';
 import { connectToDatabase } from './database.js';
 
 const app = express();
@@ -11,5 +11,6 @@ app.use(express.json());
 app.use(router);
 
 app.listen(PORT, () => {
+  // eslint-disable-next-line no-console
   console.log(`Servidor levantado en el puerto ${PORT}`);
 });

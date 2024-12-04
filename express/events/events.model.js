@@ -1,65 +1,65 @@
-import { model, Schema } from "mongoose"
-import slugify from "slugify"
+import { model, Schema } from 'mongoose';
+import slugify from 'slugify';
 
 const eventSchema = new Schema({
   name: {
     type: String,
-    required: true
+    required: true,
   },
   description: {
     type: String,
-    required: true
+    required: true,
   },
   start_at: {
     type: Date,
-    required: true
+    required: true,
   },
   ends_at: {
     type: Date,
-    required: true
+    required: true,
   },
   company_id: {
     type: Schema.Types.ObjectId,
     ref: 'Company',
-    required: true
+    required: true,
   },
   booking_available: {
     type: Boolean,
-    default: false
+    default: false,
   },
   max_tickets_for_order: {
     type: Number,
-    required: true
+    required: true,
   },
   event_type: {
     type: String,
-    required: true
+    required: true,
   },
   schedule: {
     type: String,
-    required: true
+    required: true,
   },
   slug: {
     type: String,
-    unique: true
+    unique: true,
   },
   address: {
     type: String,
-    required: true
-  }
+    required: true,
+  },
 }, {
   timestamps: {
     createdAt: 'created_at',
-    updatedAt: 'updated_at'
-  }
-})
+    updatedAt: 'updated_at',
+  },
+});
 
 eventSchema.pre('save', function(next) {
   if (this.isModified('name')) {
-    this.slug = slugify(this.name, { lower: true })
+    this.slug = slugify(this.name, { lower: true, });
   }
-  next()
-})
+  next();
+});
 
 const eventModel = model('Event', eventSchema);
 
