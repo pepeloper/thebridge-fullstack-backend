@@ -1,10 +1,10 @@
 import EventsService from "./events.service.js"
 
 const EventsController = {
-  index: (req, res) => {
+  index: async(req, res) => {
     try {
       const { booking, start_at } = req.query
-      const events = EventsService.getAll({ booking, start_at })
+      const events = await EventsService.getAll({ booking, start_at })
       res.json(events)
     } catch (error) {
       if (error.message === "Invalid date format for startAfter") {
@@ -14,10 +14,10 @@ const EventsController = {
     }
   },
 
-  show: (req, res) => {
+  show: async (req, res) => {
     try {
       const { id } = req.params
-      const event = EventsService.getById(id)
+      const event = await EventsService.getById(id)
       res.json(event)
     } catch (error) {
       if (error.message === "Event not found") {
@@ -27,19 +27,19 @@ const EventsController = {
     }
   },
 
-  create: (req, res) => {
+  create: async (req, res) => {
     try {
-      const newEvent = EventsService.create(req.body)
+      const newEvent = await EventsService.create(req.body)
       res.status(201).json(newEvent)
     } catch (error) {
       res.status(500).json({ message: "Internal server error" })
     }
   },
 
-  update: (req, res) => {
+  update: async (req, res) => {
     try {
       const { id } = req.params
-      const updatedEvent = EventsService.update(id, req.body)
+      const updatedEvent = await EventsService.update(id, req.body)
       res.json(updatedEvent)
     } catch (error) {
       if (error.message === "Event not found") {
@@ -49,10 +49,10 @@ const EventsController = {
     }
   },
 
-  delete: (req, res) => {
+  delete: async (req, res) => {
     try {
       const { id } = req.params
-      EventsService.delete(id)
+      await EventsService.delete(id)
       res.status(204).send()
     } catch (error) {
       if (error.message === "Event not found") {

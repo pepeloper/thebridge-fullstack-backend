@@ -40,7 +40,7 @@ const EventsRepository = {
     }
     return eventModel.findOneAndUpdate(
       { _id: id },
-      { $set: eventData },
+      eventData,
       { new: true }
     )
   },
