@@ -1,4 +1,6 @@
 import AuthRepository from './auth.repository.js';
+import CompaniesService from '../companies/companies.service.js';
+import CompanyUsersService from '../company-users/company-users.service.js';
 
 const generateFakeToken = (userId) => {
   return `token_${userId}_${Date.now()}`;
@@ -11,7 +13,18 @@ const AuthService = {
       throw new Error('Email already registered');
     }
 
-    const user = await AuthRepository.create(userData);
+    const company = await CompaniesService.create(userData.company);
+    const user = await AuthRepository.create({
+      name: userData.name,
+      email: userData.email,
+      password: userData.password,
+    });
+
+    await CompanyUsersService.create({
+      user_id: user._id,
+      company_id: company._id,
+    });
+
     const token = generateFakeToken(user._id);
 
     return {
@@ -19,6 +32,10 @@ const AuthService = {
         id: user._id,
         name: user.name,
         email: user.email,
+        company: {
+          id: company._id,
+          name: company.name,
+        },
       },
       token,
     };
@@ -35,6 +52,7 @@ const AuthService = {
       throw new Error('Invalid credentials');
     }
 
+    const companyUsers = await CompanyUsersService.findByUserId(user._id);
     const token = generateFakeToken(user._id);
 
     return {
@@ -42,6 +60,10 @@ const AuthService = {
         id: user._id,
         name: user.name,
         email: user.email,
+        companies: companyUsers.map((cu) => ({
+          id: cu.company_id._id,
+          name: cu.company_id.name,
+        })),
       },
       token,
     };

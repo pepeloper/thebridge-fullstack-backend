@@ -6,7 +6,7 @@ const CompanyUsersRepository = {
     return companyUserModel.create(data);
   },
 
-  findByCompany: async (companyId) => {
+  findByCompanyId: async (companyId) => {
     if (!mongoose.Types.ObjectId.isValid(companyId)) {
       return [];
     }
@@ -15,11 +15,12 @@ const CompanyUsersRepository = {
       .lean();
   },
 
-  findByUser: async (userId) => {
+  findByUserId: async (userId) => {
     if (!mongoose.Types.ObjectId.isValid(userId)) {
       return [];
     }
     return companyUserModel.find({ user_id: userId, })
+      .populate('user_id', '-password')
       .populate('company_id')
       .lean();
   },

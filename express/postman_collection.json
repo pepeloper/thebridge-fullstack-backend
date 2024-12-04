@@ -5,114 +5,6 @@
   },
   "item": [
     {
-      "name": "Companies",
-      "item": [
-        {
-          "name": "Get All Companies",
-          "request": {
-            "method": "GET",
-            "url": {
-              "raw": "http://localhost:3000/api/companies",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "3000",
-              "path": ["api", "companies"]
-            }
-          }
-        },
-        {
-          "name": "Get Company by ID",
-          "request": {
-            "method": "GET",
-            "url": {
-              "raw": "http://localhost:3000/api/companies/:id",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "3000",
-              "path": ["api", "companies", ":id"],
-              "variable": [
-                {
-                  "key": "id",
-                  "value": ""
-                }
-              ]
-            }
-          }
-        },
-        {
-          "name": "Create Company",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "url": {
-              "raw": "http://localhost:3000/api/companies",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "3000",
-              "path": ["api", "companies"]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"Test Company\",\n  \"description\": \"Test Description\",\n  \"cif\": \"B12345678\"\n}"
-            }
-          }
-        },
-        {
-          "name": "Update Company",
-          "request": {
-            "method": "PUT",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "url": {
-              "raw": "http://localhost:3000/api/companies/:id",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "3000",
-              "path": ["api", "companies", ":id"],
-              "variable": [
-                {
-                  "key": "id",
-                  "value": ""
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"Updated Company\",\n  \"description\": \"Updated Description\"\n}"
-            }
-          }
-        },
-        {
-          "name": "Delete Company",
-          "request": {
-            "method": "DELETE",
-            "url": {
-              "raw": "http://localhost:3000/api/companies/:id",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "3000",
-              "path": ["api", "companies", ":id"],
-              "variable": [
-                {
-                  "key": "id",
-                  "value": ""
-                }
-              ]
-            }
-          }
-        }
-      ]
-    },
-    {
       "name": "Events",
       "item": [
         {
@@ -120,23 +12,9 @@
           "request": {
             "method": "GET",
             "url": {
-              "raw": "http://localhost:3000/api/events",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "3000",
-              "path": ["api", "events"],
-              "query": [
-                {
-                  "key": "booking",
-                  "value": "open",
-                  "disabled": true
-                },
-                {
-                  "key": "start_at",
-                  "value": "2024-03-20",
-                  "disabled": true
-                }
-              ]
+              "raw": "{{base_url}}/api/events",
+              "host": ["{{base_url}}"],
+              "path": ["api", "events"]
             }
           }
         },
@@ -145,10 +23,8 @@
           "request": {
             "method": "GET",
             "url": {
-              "raw": "http://localhost:3000/api/events/:id",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "3000",
+              "raw": "{{base_url}}/api/events/:id",
+              "host": ["{{base_url}}"],
               "path": ["api", "events", ":id"],
               "variable": [
                 {
@@ -163,102 +39,142 @@
           "name": "Create Event",
           "request": {
             "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
             "url": {
-              "raw": "http://localhost:3000/api/events",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "3000",
+              "raw": "{{base_url}}/api/events",
+              "host": ["{{base_url}}"],
               "path": ["api", "events"]
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"Test Event\",\n  \"description\": \"Test Description\",\n  \"start_at\": \"2024-03-20T10:00:00Z\",\n  \"ends_at\": \"2024-03-20T18:00:00Z\",\n  \"company_id\": \"\",\n  \"booking_available\": true,\n  \"max_tickets_for_order\": 5,\n  \"event_type\": \"conference\",\n  \"schedule\": \"morning\",\n  \"slug\": \"test-event\",\n  \"address\": \"Test Address\"\n}"
-            }
-          }
-        },
-        {
-          "name": "Update Event",
-          "request": {
-            "method": "PUT",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
+              "raw": "{\n  \"name\": \"Sample Event\",\n  \"description\": \"Event description\",\n  \"start_at\": \"2024-03-20T10:00:00.000Z\",\n  \"ends_at\": \"2024-03-20T18:00:00.000Z\",\n  \"company_id\": \"65f9d1234567890123456789\",\n  \"booking_available\": true,\n  \"max_tickets_for_order\": 5,\n  \"event_type\": \"conference\",\n  \"schedule\": \"Full day\",\n  \"address\": \"123 Event St\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
               }
-            ],
-            "url": {
-              "raw": "http://localhost:3000/api/events/:id",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "3000",
-              "path": ["api", "events", ":id"],
-              "variable": [
-                {
-                  "key": "id",
-                  "value": ""
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"Updated Event\",\n  \"description\": \"Updated Description\"\n}"
-            }
-          }
-        },
-        {
-          "name": "Delete Event",
-          "request": {
-            "method": "DELETE",
-            "url": {
-              "raw": "http://localhost:3000/api/events/:id",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "3000",
-              "path": ["api", "events", ":id"],
-              "variable": [
-                {
-                  "key": "id",
-                  "value": ""
-                }
-              ]
             }
           }
         }
       ]
     },
     {
-      "name": "Users",
+      "name": "Companies",
       "item": [
         {
-          "name": "Register User",
+          "name": "Get All Companies",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/companies",
+              "host": ["{{base_url}}"],
+              "path": ["api", "companies"]
+            }
+          }
+        },
+        {
+          "name": "Get Company by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/companies/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "companies", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Company",
           "request": {
             "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
             "url": {
-              "raw": "http://localhost:3000/api/users/register",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "3000",
-              "path": ["api", "users", "register"]
+              "raw": "{{base_url}}/api/companies",
+              "host": ["{{base_url}}"],
+              "path": ["api", "companies"]
             },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"Test User\",\n  \"email\": \"test@example.com\",\n  \"password\": \"password123\",\n  \"company_id\": \"65f1a1234567890123456789\"\n}"
+              "raw": "{\n  \"name\": \"Sample Company\",\n  \"description\": \"Company description\",\n  \"address\": \"123 Company St\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
             }
           }
         }
       ]
+    },
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/api/auth/register",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "register"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\",\n  \"company\": {\n    \"name\": \"John's Company\",\n    \"description\": \"Company description\",\n    \"cif\": \"123456N\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/api/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "login"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "response": [
+              {
+                "name": "Success Response",
+                "originalRequest": {
+                  "method": "POST",
+                  "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\"\n}"
+                  }
+                },
+                "status": "OK",
+                "code": 200,
+                "body": "{\n  \"user\": {\n    \"id\": \"user_id\",\n    \"name\": \"John Doe\",\n    \"email\": \"john@example.com\",\n    \"companies\": [\n      {\n        \"id\": \"company_id_1\",\n        \"role\": \"admin\"\n      },\n      {\n        \"id\": \"company_id_2\",\n        \"role\": \"user\"\n      }\n    ]\n  },\n  \"token\": \"token_user_id_timestamp\"\n}"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000"
     }
   ]
 }

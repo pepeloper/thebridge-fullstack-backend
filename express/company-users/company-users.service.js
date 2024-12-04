@@ -1,8 +1,12 @@
 import CompanyUsersRepository from './company-users.repository.js';
 
 const CompanyUsersService = {
-  assignUserToCompany: async (userId, companyId) => {
-    return CompanyUsersRepository.create({ user_id: userId, company_id: companyId, });
+  create: async (companyUserData) => {
+    return CompanyUsersRepository.create(companyUserData);
+  },
+
+  findByUserId: async (userId) => {
+    return CompanyUsersRepository.findByUserId(userId);
   },
 };
 
