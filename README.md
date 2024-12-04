@@ -36,11 +36,11 @@
 ## Instalación de MongoDB
  Pasos para instalar mongoDB y Compass
  - Descargar Mongo (Para instalar el motor de BD)
- - - 🔗[Mongo Community Edition](https://www.mongodb.com/try/download/community)
+  - 🔗[Mongo Community Edition](https://www.mongodb.com/try/download/community)
  - Descargar Shell (Para manejar Mongo vía terminal)
- - - 🔗[Shell](https://www.mongodb.com/try/download/shell)
+  - 🔗[Shell](https://www.mongodb.com/try/download/shell)
  - Instalar Mongoose vía NPM (Framework para conectar nuestro back a una BD mongo)
- - - 🔗[Mongoose](https://www.npmjs.com/package/mongoose)
+  - 🔗[Mongoose](https://www.npmjs.com/package/mongoose)
 
 🔗 [Apuntes](https://docs.google.com/presentation/d/1pTOIZTHOE03-D3Q8TutwWRUvX87OG0yc/edit#slide=id.p1)
 
