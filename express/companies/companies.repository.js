@@ -2,9 +2,8 @@ import companyModel from "./companies.model.js"
 import mongoose from "mongoose"
 
 const CompaniesRepository = {
-  findAll: async (filters = {}) => {
-    const query = {}
-    return companyModel.find(query).lean()
+  findAll: async () => {
+    return companyModel.find().lean()
   },
 
   findById: async (id) => {

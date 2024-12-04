@@ -1,4 +1,5 @@
 import { model, Schema } from "mongoose"
+import slugify from "slugify"
 
 const eventSchema = new Schema({
   name: {
@@ -40,7 +41,6 @@ const eventSchema = new Schema({
   },
   slug: {
     type: String,
-    required: true,
     unique: true
   },
   address: {
@@ -52,6 +52,13 @@ const eventSchema = new Schema({
     createdAt: 'created_at',
     updatedAt: 'updated_at'
   }
+})
+
+eventSchema.pre('save', function(next) {
+  if (this.isModified('name')) {
+    this.slug = slugify(this.name, { lower: true })
+  }
+  next()
 })
 
 const eventModel = model('Event', eventSchema);

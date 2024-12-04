@@ -1,24 +1,39 @@
 import CompaniesRepository from "./companies.repository.js"
 
 const CompaniesService = {
-  getAllCompanies: async (filters) => {
-    return CompaniesRepository.findAll(filters)
+  getAll: () => {
+    try {
+      return CompaniesRepository.findAll()
+    } catch (error) {
+      throw new Error("Error fetching companies")
+    }
   },
 
-  getCompanyById: async (id) => {
-    return CompaniesRepository.findById(id)
+  getById: (id) => {
+    const company = CompaniesRepository.findById(id)
+    if (!company) {
+      throw new Error("Company not found")
+    }
+    return company
   },
 
-  createCompany: async (companyData) => {
+  create: (companyData) => {
     return CompaniesRepository.create(companyData)
   },
 
-  updateCompany: async (id, companyData) => {
-    return CompaniesRepository.update(id, companyData)
+  update: (id, companyData) => {
+    const updatedCompany = CompaniesRepository.update(id, companyData)
+    if (!updatedCompany) {
+      throw new Error("Company not found")
+    }
+    return updatedCompany
   },
 
-  deleteCompany: async (id) => {
-    return CompaniesRepository.delete(id)
+  delete: (id) => {
+    const result = CompaniesRepository.delete(id)
+    if (!result) {
+      throw new Error("Company not found")
+    }
   }
 }
 
