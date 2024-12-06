@@ -21,7 +21,7 @@ npm install <package>
 
 ### Ejecutar scripts
 ```json
-// package.json
+/* package.json */
 "scripts": {
   "start": "node index.js"
 }
