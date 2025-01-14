@@ -1,0 +1,405 @@
+{
+  "info": {
+    "name": "Events API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/api/auth/register",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "register"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\",\n  \"company\": {\n    \"name\": \"John's Company\",\n    \"description\": \"Company description\",\n    \"cif\": \"123456N\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\",\n  \"company\": {\n    \"name\": \"John's Company\",\n    \"description\": \"Company description\",\n    \"cif\": \"123456N\"\n  }\n}"
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "body": "{\n  \"user\": {\n    \"id\": \"65f9d1234567890123456789\",\n    \"name\": \"John Doe\",\n    \"email\": \"john@example.com\",\n    \"company\": {\n      \"id\": \"65f9d1234567890123456790\",\n      \"name\": \"John's Company\"\n    }\n  },\n  \"token\": \"token_65f9d1234567890123456789_1710871234567\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/api/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "login"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\"\n}"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"user\": {\n    \"id\": \"65f9d1234567890123456789\",\n    \"name\": \"John Doe\",\n    \"email\": \"john@example.com\",\n    \"companies\": [\n      {\n        \"id\": \"65f9d1234567890123456790\",\n        \"name\": \"John's Company\"\n      }\n    ]\n  },\n  \"token\": \"token_65f9d1234567890123456789_1710871234567\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Companies",
+      "item": [
+        {
+          "name": "Get All Companies",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/companies",
+              "host": ["{{base_url}}"],
+              "path": ["api", "companies"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET"
+              },
+              "status": "OK",
+              "code": 200,
+              "body": "[\n  {\n    \"id\": \"65f9d1234567890123456790\",\n    \"name\": \"John's Company\",\n    \"description\": \"Company description\",\n    \"cif\": \"123456N\",\n    \"slug\": \"johns-company\"\n  }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Get Company by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/companies/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "companies", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "65f9d1234567890123456790"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET"
+              },
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"id\": \"65f9d1234567890123456790\",\n  \"name\": \"John's Company\",\n  \"description\": \"Company description\",\n  \"cif\": \"123456N\",\n  \"slug\": \"johns-company\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Create Company",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/api/companies",
+              "host": ["{{base_url}}"],
+              "path": ["api", "companies"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"New Company\",\n  \"description\": \"Company description\",\n  \"cif\": \"789012M\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"New Company\",\n  \"description\": \"Company description\",\n  \"cif\": \"789012M\"\n}"
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "body": "{\n  \"id\": \"65f9d1234567890123456791\",\n  \"name\": \"New Company\",\n  \"description\": \"Company description\",\n  \"cif\": \"789012M\",\n  \"slug\": \"new-company\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update Company",
+          "request": {
+            "method": "PUT",
+            "url": {
+              "raw": "{{base_url}}/api/companies/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "companies", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "65f9d1234567890123456790"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Updated Company Name\",\n  \"description\": \"Updated description\",\n  \"cif\": \"789012M\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Updated Company Name\",\n  \"description\": \"Updated description\",\n  \"cif\": \"789012M\"\n}"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"id\": \"65f9d1234567890123456790\",\n  \"name\": \"Updated Company Name\",\n  \"description\": \"Updated description\",\n  \"cif\": \"789012M\",\n  \"slug\": \"updated-company-name\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete Company",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{base_url}}/api/companies/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "companies", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "65f9d1234567890123456790"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "DELETE"
+              },
+              "status": "No Content",
+              "code": 204
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Events",
+      "item": [
+        {
+          "name": "Get All Events",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/events",
+              "host": ["{{base_url}}"],
+              "path": ["api", "events"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET"
+              },
+              "status": "OK",
+              "code": 200,
+              "body": "[\n  {\n    \"id\": \"65f9d1234567890123456792\",\n    \"name\": \"Sample Event\",\n    \"description\": \"Event description\",\n    \"start_at\": \"2024-03-20T10:00:00.000Z\",\n    \"ends_at\": \"2024-03-20T18:00:00.000Z\",\n    \"company_id\": \"65f9d1234567890123456790\",\n    \"booking_available\": true,\n    \"max_tickets_for_order\": 5,\n    \"event_type\": \"conference\",\n    \"schedule\": \"Full day\",\n    \"address\": \"123 Event St\",\n    \"slug\": \"sample-event\"\n  }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Get Event by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/events/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "events", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "65f9d1234567890123456792"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET"
+              },
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"id\": \"65f9d1234567890123456792\",\n  \"name\": \"Sample Event\",\n  \"description\": \"Event description\",\n  \"start_at\": \"2024-03-20T10:00:00.000Z\",\n  \"ends_at\": \"2024-03-20T18:00:00.000Z\",\n  \"company_id\": \"65f9d1234567890123456790\",\n  \"booking_available\": true,\n  \"max_tickets_for_order\": 5,\n  \"event_type\": \"conference\",\n  \"schedule\": \"Full day\",\n  \"address\": \"123 Event St\",\n  \"slug\": \"sample-event\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Create Event",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/api/events",
+              "host": ["{{base_url}}"],
+              "path": ["api", "events"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"New Event\",\n  \"description\": \"Event description\",\n  \"start_at\": \"2024-03-20T10:00:00.000Z\",\n  \"ends_at\": \"2024-03-20T18:00:00.000Z\",\n  \"company_id\": \"65f9d1234567890123456790\",\n  \"booking_available\": true,\n  \"max_tickets_for_order\": 5,\n  \"event_type\": \"conference\",\n  \"schedule\": \"Full day\",\n  \"address\": \"123 Event St\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"New Event\",\n  \"description\": \"Event description\",\n  \"start_at\": \"2024-03-20T10:00:00.000Z\",\n  \"ends_at\": \"2024-03-20T18:00:00.000Z\",\n  \"company_id\": \"65f9d1234567890123456790\",\n  \"booking_available\": true,\n  \"max_tickets_for_order\": 5,\n  \"event_type\": \"conference\",\n  \"schedule\": \"Full day\",\n  \"address\": \"123 Event St\"\n}"
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "body": "{\n  \"id\": \"65f9d1234567890123456793\",\n  \"name\": \"New Event\",\n  \"description\": \"Event description\",\n  \"start_at\": \"2024-03-20T10:00:00.000Z\",\n  \"ends_at\": \"2024-03-20T18:00:00.000Z\",\n  \"company_id\": \"65f9d1234567890123456790\",\n  \"booking_available\": true,\n  \"max_tickets_for_order\": 5,\n  \"event_type\": \"conference\",\n  \"schedule\": \"Full day\",\n  \"address\": \"123 Event St\",\n  \"slug\": \"new-event\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update Event",
+          "request": {
+            "method": "PUT",
+            "url": {
+              "raw": "{{base_url}}/api/events/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "events", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "65f9d1234567890123456792"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Updated Event\",\n  \"description\": \"Updated description\",\n  \"start_at\": \"2024-03-21T10:00:00.000Z\",\n  \"ends_at\": \"2024-03-21T18:00:00.000Z\",\n  \"company_id\": \"65f9d1234567890123456790\",\n  \"booking_available\": false,\n  \"max_tickets_for_order\": 10,\n  \"event_type\": \"workshop\",\n  \"schedule\": \"Morning\",\n  \"address\": \"456 Event Ave\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Updated Event\",\n  \"description\": \"Updated description\",\n  \"start_at\": \"2024-03-21T10:00:00.000Z\",\n  \"ends_at\": \"2024-03-21T18:00:00.000Z\",\n  \"company_id\": \"65f9d1234567890123456790\",\n  \"booking_available\": false,\n  \"max_tickets_for_order\": 10,\n  \"event_type\": \"workshop\",\n  \"schedule\": \"Morning\",\n  \"address\": \"456 Event Ave\"\n}"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "body": "{\n  \"id\": \"65f9d1234567890123456792\",\n  \"name\": \"Updated Event\",\n  \"description\": \"Updated description\",\n  \"start_at\": \"2024-03-21T10:00:00.000Z\",\n  \"ends_at\": \"2024-03-21T18:00:00.000Z\",\n  \"company_id\": \"65f9d1234567890123456790\",\n  \"booking_available\": false,\n  \"max_tickets_for_order\": 10,\n  \"event_type\": \"workshop\",\n  \"schedule\": \"Morning\",\n  \"address\": \"456 Event Ave\",\n  \"slug\": \"updated-event\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete Event",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{base_url}}/api/events/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "events", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "65f9d1234567890123456792"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "DELETE"
+              },
+              "status": "No Content",
+              "code": 204
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000"
+    }
+  ]
+}

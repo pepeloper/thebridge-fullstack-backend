@@ -10,7 +10,7 @@ const CompaniesRepository = {
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return null;
     }
-    return companyModel.findById(id).lean();
+    return companyModel.findById(id).populate('events').lean();
   },
 
   create: async (companyData) => {

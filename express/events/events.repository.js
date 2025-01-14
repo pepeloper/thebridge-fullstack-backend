@@ -27,6 +27,7 @@ const EventsRepository = {
       return null;
     }
     return eventModel.findById(id)
+      .populate('company_id')
       .lean();
   },
 
